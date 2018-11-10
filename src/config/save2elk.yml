@@ -1,0 +1,16 @@
+MJ:
+  type: 'oracle'
+  role: 'source'
+  host: '10.134.171.15'
+  port: 1521
+  user:  'mantis'
+  password: 'mantis'
+  db: 'atedb'
+  tables:
+    - 'csd_machine_status'
+
+ELK:
+  type: 'elasticsearch'
+  role: 'destination'
+  host: '10.134.71.18'
+  port: 9200
