@@ -87,7 +87,8 @@ class SQL2ELK(object):
 
                     for col, value in row:
                         print('col:%s, value:%s' %(col, value))
-                        data[col] = "'" + str(value) + "'"
+                        # data[col] = "'" + str(value) + "'"
+                        data[col] = value
 
                     for dest_connect in dest:
                         self.saveToDest(dest_connect, 
