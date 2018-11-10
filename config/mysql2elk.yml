@@ -1,0 +1,16 @@
+MJ:
+  type: 'mysql'
+  role: 'source'
+  host: 'mysql'
+  port: 3306
+  user:  'root'
+  password: 'root'
+  db: 'test'
+  tables:
+    - 'test'
+
+ELK:
+  type: 'elasticsearch'
+  role: 'destination'
+  host: 'elasticsearch'
+  port: 9200
