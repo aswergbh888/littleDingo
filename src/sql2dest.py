@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import sys
 import yaml
-from connectorFactory import ConnectorFactory
+from connectors.connectorFactory import ConnectorFactory
 
 class SQL2ELK(object):
 
@@ -44,8 +44,7 @@ class SQL2ELK(object):
 
             # Prepare the column names
             for desc in cur.description:
-                cols.append(desc[0])
-
+                cols.append(desc)
         for row in result:
             yield zip(cols, row)
             
@@ -84,12 +83,12 @@ class SQL2ELK(object):
                 for row in self.getAllRows(source_connect, table):
                     print('=============%s:%s=================' % (str(source_connect), table))
                     data = dict()
-
                     for col, value in row:
                         print('col:%s, value:%s' %(col, value))
-                        # data[col] = "'" + str(value) + "'"
-                        data[col] = value
-
+                        col_name, real_value = source_connect.parseValue(col, value)
+                        print('col:%s, real_value:%s' %(col_name, real_value))
+                        data[col_name] = real_value
+                         
                     for dest_connect in dest:
                         self.saveToDest(dest_connect, 
                                         source_connect.getDB(), 
