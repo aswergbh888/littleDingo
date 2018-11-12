@@ -4,7 +4,7 @@
 docker build -t littledingo .
 
 ## save image to tar file
-docker save -o littledingo.tar littleding
+docker save -o littledingo.tar littledingo
 
 ## scp to another docker environment
 scp littledingo.tar xxx@xxx.xxx.xx.xx
